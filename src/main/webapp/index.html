@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Apex Saving Bank – Digital Banking Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+
+body{
+  min-height:100vh;
+  background:url('bg.jpg') no-repeat center center/cover fixed;
+  position:relative;
+  color:#fff;
+}
+body::before{content:"";position:fixed;inset:0;background:rgba(10,15,40,0.78);z-index:0;}
+
+/* ── NAVBAR ── */
+.navbar{
+  position:relative;z-index:10;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 48px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  backdrop-filter:blur(10px);
+  background:rgba(255,255,255,0.03);
+}
+.nav-logo{display:flex;align-items:center;gap:12px;}
+.logo-icon{
+  width:44px;height:44px;
+  background:linear-gradient(135deg,#F07600,#ff9a3c);
+  border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;font-weight:800;color:white;
+  box-shadow:0 4px 16px rgba(240,118,0,0.4);
+}
+.logo-text{font-size:20px;font-weight:800;color:#fff;letter-spacing:0.5px;}
+.logo-sub{font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:3px;text-transform:uppercase;display:block;}
+
+.nav-links{display:flex;gap:4px;}
+.nav-link{
+  color:rgba(255,255,255,0.6);text-decoration:none;
+  font-size:14px;font-weight:500;padding:8px 16px;border-radius:8px;transition:all 0.2s;
+}
+.nav-link:hover{color:#fff;background:rgba(255,255,255,0.07);}
+
+.nav-btns{display:flex;gap:10px;align-items:center;}
+.btn-outline{
+  border:1.5px solid rgba(255,255,255,0.2);color:#fff;
+  padding:8px 20px;border-radius:8px;font-size:14px;font-weight:600;
+  text-decoration:none;transition:all 0.2s;display:flex;align-items:center;gap:7px;
+}
+.btn-outline:hover{border-color:#F07600;color:#F07600;}
+.btn-solid{
+  background:linear-gradient(135deg,#F07600,#ff9a3c);
+  color:white;padding:9px 22px;border-radius:8px;
+  font-size:14px;font-weight:700;text-decoration:none;
+  box-shadow:0 4px 16px rgba(240,118,0,0.35);
+  transition:all 0.2s;display:flex;align-items:center;gap:8px;
+}
+.btn-solid:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(240,118,0,0.45);}
+
+/* ── HERO ── */
+.hero{
+  position:relative;z-index:1;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:80px 48px 60px;max-width:1200px;margin:0 auto;gap:48px;
+}
+.hero-left{flex:1;}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(240,118,0,0.15);border:1px solid rgba(240,118,0,0.3);
+  padding:6px 16px;border-radius:20px;font-size:12px;font-weight:600;color:#F07600;
+  margin-bottom:20px;
+}
+.hero-title{font-size:48px;font-weight:800;line-height:1.15;margin-bottom:16px;}
+.hero-title span{color:#F07600;}
+.hero-sub{
+  font-size:16px;color:rgba(255,255,255,0.6);
+  line-height:1.75;max-width:480px;margin-bottom:36px;
+}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:32px;}
+.hero-btn-primary{
+  background:linear-gradient(135deg,#F07600,#ff9a3c);
+  color:white;padding:14px 32px;border-radius:10px;font-size:15px;font-weight:700;
+  text-decoration:none;box-shadow:0 6px 20px rgba(240,118,0,0.4);
+  transition:all 0.2s;display:flex;align-items:center;gap:8px;
+}
+.hero-btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(240,118,0,0.5);}
+.hero-btn-secondary{
+  border:2px solid rgba(255,255,255,0.2);color:#fff;
+  padding:14px 28px;border-radius:10px;font-size:15px;font-weight:600;
+  text-decoration:none;transition:all 0.2s;display:flex;align-items:center;gap:8px;
+}
+.hero-btn-secondary:hover{border-color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.05);}
+
+/* Trust badges */
+.trust-row{display:flex;gap:20px;flex-wrap:wrap;}
+.trust-item{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,0.45);}
+.trust-item i{color:#F07600;font-size:13px;}
+
+/* ── STAT CARDS (right side) ── */
+.hero-right{display:flex;flex-direction:column;gap:14px;min-width:270px;}
+.stat-card{
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:16px;padding:20px 24px;
+  backdrop-filter:blur(20px);
+  display:flex;align-items:center;gap:16px;transition:all 0.2s;
+}
+.stat-card:hover{background:rgba(255,255,255,0.09);transform:translateX(4px);}
+.stat-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.stat-icon.orange{background:rgba(240,118,0,0.2);color:#F07600;}
+.stat-icon.green{background:rgba(22,163,74,0.2);color:#4ADE80;}
+.stat-icon.purple{background:rgba(139,92,246,0.2);color:#A78BFA;}
+.stat-num{font-size:22px;font-weight:800;color:#fff;}
+.stat-lbl{font-size:12px;color:rgba(255,255,255,0.5);margin-top:2px;}
+
+/* ── FEATURES ── */
+.features{
+  position:relative;z-index:1;
+  max-width:1200px;margin:0 auto;padding:20px 48px 60px;
+}
+.section-head{text-align:center;margin-bottom:36px;}
+.section-head h2{font-size:28px;font-weight:800;margin-bottom:8px;}
+.section-head h2 span{color:#F07600;}
+.section-head p{color:rgba(255,255,255,0.45);font-size:14px;}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.feat-card{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.09);
+  border-radius:16px;padding:26px;
+  backdrop-filter:blur(10px);transition:all 0.25s;
+}
+.feat-card:hover{
+  background:rgba(240,118,0,0.07);
+  border-color:rgba(240,118,0,0.3);
+  transform:translateY(-4px);
+}
+.feat-icon{
+  width:50px;height:50px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;margin-bottom:16px;
+}
+.feat-card h4{font-size:15px;font-weight:700;margin-bottom:6px;}
+.feat-card p{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.65;}
+
+/* ── FOOTER ── */
+.footer{
+  position:relative;z-index:1;
+  text-align:center;padding:24px 48px;
+  border-top:1px solid rgba(255,255,255,0.07);
+  font-size:12px;color:rgba(255,255,255,0.3);
+  backdrop-filter:blur(10px);
+  background:rgba(255,255,255,0.02);
+}
+.footer strong{color:#F07600;}
+.footer a{color:rgba(255,255,255,0.3);text-decoration:none;margin:0 8px;transition:color 0.2s;}
+.footer a:hover{color:#F07600;}
+
+@media(max-width:900px){
+  .hero{flex-direction:column;padding:48px 24px 40px;}
+  .hero-right{flex-direction:row;flex-wrap:wrap;min-width:unset;}
+  .stat-card{flex:1;min-width:140px;}
+  .features{padding:0 24px 40px;}
+  .features-grid{grid-template-columns:1fr 1fr;}
+  .navbar{padding:14px 24px;}
+  .nav-links{display:none;}
+}
+@media(max-width:600px){
+  .features-grid{grid-template-columns:1fr;}
+  .hero-title{font-size:32px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav class="navbar">
+  <div class="nav-logo">
+    <div class="logo-icon">A</div>
+    <div>
+      <div class="logo-text">Apex Saving Bank</div>
+      <span class="logo-sub">Digital Banking</span>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="#features" class="nav-link">Features</a>
+    <a href="#features" class="nav-link">Accounts</a>
+    <a href="#features" class="nav-link">Loans</a>
+    <a href="#features" class="nav-link">Investments</a>
+  </div>
+  <div class="nav-btns">
+    <a href="login.jsp" class="btn-outline"><i class="fas fa-sign-in-alt"></i> Login</a>
+    <a href="register.jsp" class="btn-solid"><i class="fas fa-user-plus"></i> Open Account</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-badge"><i class="fas fa-shield-alt"></i> RBI Regulated &amp; Secure</div>
+    <div class="hero-title">Secure banking<br/>made <span>simple</span></div>
+    <div class="hero-sub">Open zero-balance accounts, invest in RDs, apply for loans — all from your phone or browser. Protected with OTP login and 256-bit encryption.</div>
+    <div class="hero-btns">
+      <a href="login.jsp" class="hero-btn-primary"><i class="fas fa-sign-in-alt"></i> Login to NetBanking</a>
+      <a href="register.jsp" class="hero-btn-secondary"><i class="fas fa-user-plus"></i> Open Account</a>
+    </div>
+    <div class="trust-row">
+      <div class="trust-item"><i class="fas fa-shield-alt"></i> SSL Secured</div>
+      <div class="trust-item"><i class="fas fa-lock"></i> 256-bit Encrypted</div>
+      <div class="trust-item"><i class="fas fa-university"></i> RBI Regulated</div>
+      <div class="trust-item"><i class="fas fa-envelope"></i> OTP Login</div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="stat-card">
+      <div class="stat-icon orange"><i class="fas fa-users"></i></div>
+      <div><div class="stat-num">10L+</div><div class="stat-lbl">Happy Customers</div></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon green"><i class="fas fa-university"></i></div>
+      <div><div class="stat-num">500+</div><div class="stat-lbl">Branches Across India</div></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon purple"><i class="fas fa-rupee-sign"></i></div>
+      <div><div class="stat-num">₹500Cr+</div><div class="stat-lbl">Total Deposits</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FEATURES ── -->
+<div class="features" id="features">
+  <div class="section-head">
+    <h2>Everything you need in one <span>bank</span></h2>
+    <p>Simple, powerful, and always available — 24x7</p>
+  </div>
+  <div class="features-grid">
+    <div class="feat-card">
+      <div class="feat-icon" style="background:rgba(240,118,0,0.2);color:#F07600;"><i class="fas fa-sync-alt"></i></div>
+      <h4>Recurring Deposits</h4>
+      <p>Start RD from ₹500/month. Earn up to 7.5% p.a. Track progress and maturity online anytime.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon" style="background:rgba(22,163,74,0.2);color:#4ADE80;"><i class="fas fa-exchange-alt"></i></div>
+      <h4>Instant Transfers</h4>
+      <p>Send money via NEFT, RTGS, IMPS 24x7. Zero charges on all domestic transfers.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon" style="background:rgba(139,92,246,0.2);color:#A78BFA;"><i class="fas fa-chart-line"></i></div>
+      <h4>Smart Investments</h4>
+      <p>Mutual funds, digital gold, fixed deposits — all managed from your bank account.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon" style="background:rgba(245,158,11,0.2);color:#FCD34D;"><i class="fas fa-home"></i></div>
+      <h4>Easy Loans</h4>
+      <p>Home, car, personal and education loans with quick approval. Rates from 8.4% p.a.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon" style="background:rgba(239,68,68,0.2);color:#F87171;"><i class="fas fa-bell"></i></div>
+      <h4>Email Notifications</h4>
+      <p>Automated email alerts for RD due dates, transactions, and important account updates.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon" style="background:rgba(240,118,0,0.2);color:#F07600;"><i class="fas fa-shield-alt"></i></div>
+      <h4>OTP Security Login</h4>
+      <p>Two-factor authentication with email OTP. Your account stays protected at all times.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<div class="footer">
+  &copy; 2026 <strong>Apex Saving Bank Ltd.</strong> &nbsp;|&nbsp; All Rights Reserved &nbsp;|&nbsp; RBI License No. ASB-2024-001 &nbsp;|&nbsp;
+  <a href="#">Privacy Policy</a>
+  <a href="#">Terms &amp; Conditions</a>
+  <a href="#">Contact Us</a>
+</div>
+
+</body>
+</html>
