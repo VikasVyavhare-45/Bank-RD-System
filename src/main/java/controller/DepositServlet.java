@@ -69,8 +69,8 @@ public class DepositServlet extends HttpServlet {
                     "SELECT COUNT(*) FROM transactions " +
                     "WHERE account_id = ? " +
                     "  AND txn_type = 'Deposit' " +
-                    "  AND MONTH(txn_date) = MONTH(CURRENT_DATE) " +
-                    "  AND YEAR(txn_date)  = YEAR(CURRENT_DATE)"
+                    "  AND EXTRACT(MONTH FROM txn_date) = EXTRACT(MONTH FROM CURRENT_DATE) " +
+                    "  AND EXTRACT(YEAR  FROM txn_date) = EXTRACT(YEAR  FROM CURRENT_DATE)"
                 );
                 psCheck.setInt(1, accountId);
                 ResultSet rsCheck = psCheck.executeQuery();
