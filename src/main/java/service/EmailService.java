@@ -4,10 +4,8 @@ import java.io.*;
 import java.net.*;
 import java.nio.charset.StandardCharsets;
 
-/**
- * Brevo HTTP API वापरतो — SMTP port issues नाहीत
- * Railway वर SMTP ports block होतात पण HTTPS नाही
- */
+ 
+ 
 public class EmailService {
 
     private static final String BREVO_API_URL = "https://api.brevo.com/v3/smtp/email";

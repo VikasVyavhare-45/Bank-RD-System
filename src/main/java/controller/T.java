@@ -10,7 +10,7 @@ import java.sql.*;
 import java.time.LocalDate;
 
 @WebServlet("/TestEmailServlet")
-public class TestEmailServlet extends HttpServlet {
+public class T extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -86,7 +86,7 @@ public class TestEmailServlet extends HttpServlet {
             }
             con.close();
 
-            // Admin summary पण पाठव
+ 
             if(sent > 0) {
                 try {
                     EmailService.sendAdminSummary("vikasvyavhare7@gmail.com", sent, rows.toString());

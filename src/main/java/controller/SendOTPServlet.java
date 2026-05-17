@@ -23,7 +23,7 @@ public class SendOTPServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
 
-        // ✅ ADMIN — OTP bypass
+     
         if (!isResend && "admin".equals(username) && "V!kas".equals(password)) {
             session.setAttribute("user", "admin");
             session.setAttribute("role", "admin");
@@ -52,7 +52,7 @@ public class SendOTPServlet extends HttpServlet {
                 return;
             }
 
-            // Password verify
+          
             if (!isResend) {
                 String dbPass = rs.getString("password");
                 if (!dbPass.equals(password)) {
@@ -72,17 +72,16 @@ public class SendOTPServlet extends HttpServlet {
                 return;
             }
 
-            // ✅ OTP generate करा
+           
             String otp    = String.format("%06d", new Random().nextInt(999999));
             long   expiry = System.currentTimeMillis() + (5 * 60 * 1000); // 5 min
 
-            // Session मध्ये save करा
+          
             session.setAttribute("otpCode",     otp);
             session.setAttribute("otpExpiry",   expiry);
             session.setAttribute("otpUsername", username);
 
-            // ✅ KEY FIX: Email BACKGROUND thread मध्ये पाठवा
-            // User ला लगेच response मिळेल — email background मध्ये जाईल
+         
             final String finalEmail    = email;
             final String finalFullName = fullName;
             final String finalOtp      = otp;
@@ -98,7 +97,7 @@ public class SendOTPServlet extends HttpServlet {
                 }
             }).start();
 
-            // ✅ Email पाठवायच्या आधीच user ला success response द्या
+          
             String maskedEmail = maskEmail(email);
             out.print("{\"success\":true,\"isAdmin\":false,\"maskedEmail\":\"" + maskedEmail + "\"}");
 

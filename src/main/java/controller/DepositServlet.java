@@ -26,7 +26,7 @@ public class DepositServlet extends HttpServlet {
 
             Connection con = DBConnection.getConnection();
 
-            // ── Fetch RD account details (amount, status, due_day) ──
+            
             PreparedStatement ps1 = con.prepareStatement(
                 "SELECT amount, status, due_day FROM rd_account WHERE account_id = ?"
             );
@@ -36,16 +36,16 @@ public class DepositServlet extends HttpServlet {
             if (rs.next()) {
                 double rdAmount = rs.getDouble("amount");
                 String status   = rs.getString("status");
-                int    dueDay   = rs.getInt("due_day");   // e.g. 5 means 5th of every month
+                int    dueDay   = rs.getInt("due_day");   
 
-                // ── Check account is Active ──
+                
                 if (!"Active".equalsIgnoreCase(status)) {
                     session.setAttribute("depositMsg", "error:Account is not Active!");
                     response.sendRedirect("deposit.jsp?account_id=" + accountId);
                     return;
                 }
 
-                // ── Amount exact match check ──
+               
                 if (Math.abs(userAmount - rdAmount) >= 0.01) {
                     session.setAttribute("depositMsg",
                         "error:Invalid Amount! Enter exact RD amount: ₹" + rdAmount);
@@ -53,18 +53,14 @@ public class DepositServlet extends HttpServlet {
                     return;
                 }
 
-                // ══════════════════════════════════════════════
-                //   LATE PAYMENT PENALTY LOGIC — ₹10 per day
-                // ══════════════════════════════════════════════
+              
                 LocalDate today       = LocalDate.now();
                 int       todayDay    = today.getDayOfMonth();
                 int       daysLate    = 0;
                 double    penaltyAmt  = 0.0;
                 String    penaltyNote = "";
 
-                // ── Check: did user already pay this month? ──
-                // If today's day > due_day → user is late
-                // Also make sure no deposit exists for current month already
+                
                 PreparedStatement psCheck = con.prepareStatement(
                     "SELECT COUNT(*) FROM transactions " +
                     "WHERE account_id = ? " +
@@ -84,7 +80,7 @@ public class DepositServlet extends HttpServlet {
                     return;
                 }
 
-                // ── Calculate late days ──
+                
                 if (todayDay > dueDay) {
                     daysLate   = todayDay - dueDay;
                     penaltyAmt = daysLate * 10.0;   // ₹10 per day
@@ -93,7 +89,7 @@ public class DepositServlet extends HttpServlet {
 
                 double totalDebit = rdAmount + penaltyAmt;
 
-                // ── Insert main Deposit transaction ──
+             
                 PreparedStatement ps2 = con.prepareStatement(
                     "INSERT INTO transactions(account_id, amount, txn_date, txn_type) " +
                     "VALUES (?, ?, CURRENT_DATE, 'Deposit')"
@@ -102,7 +98,7 @@ public class DepositServlet extends HttpServlet {
                 ps2.setDouble(2, rdAmount);
                 ps2.executeUpdate();
 
-                // ── If late → insert separate Penalty transaction ──
+              
                 if (penaltyAmt > 0) {
                     PreparedStatement psPenalty = con.prepareStatement(
                         "INSERT INTO transactions(account_id, amount, txn_date, txn_type) " +

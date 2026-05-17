@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>MyBank – Login</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
@@ -12,7 +13,7 @@ body::before{content:"";position:fixed;inset:0;background:rgba(10,15,40,0.78);z-
 
 .wrap{position:relative;z-index:1;width:100%;max-width:420px;padding:20px;}
 
-/* BACK TO HOME */
+ 
 .back-home{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,0.6);font-size:13px;text-decoration:none;margin-bottom:20px;transition:color 0.2s;}
 .back-home:hover{color:#F07600;}
 
@@ -49,8 +50,7 @@ body::before{content:"";position:fixed;inset:0;background:rgba(10,15,40,0.78);z-
 .register-link span{color:#F07600;font-weight:600;}
 .register-link:hover span{text-decoration:underline;}
 .footer-txt{text-align:center;margin-top:20px;font-size:11px;color:#555;}
-
-/* ── OTP STEP ── */
+ 
 .step{display:none;}
 .step.active{display:block;}
 
@@ -70,7 +70,7 @@ body::before{content:"";position:fixed;inset:0;background:rgba(10,15,40,0.78);z-
 .step-back-btn{display:flex;align-items:center;gap:6px;color:#aaa;font-size:13px;cursor:pointer;margin-bottom:20px;background:none;border:none;font-family:inherit;padding:0;}
 .step-back-btn:hover{color:#F07600;}
 
-/* Modal */
+ 
 .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:100;justify-content:center;align-items:center;}
 .modal.show{display:flex;}
 .modal-box{background:#1a1d2e;border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:32px;width:320px;text-align:center;}
@@ -85,21 +85,21 @@ body::before{content:"";position:fixed;inset:0;background:rgba(10,15,40,0.78);z-
 
 <div class="wrap">
 
-  <!-- Back to home -->
+ 
   <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
 
   <div class="logo-box">
-    <div class="logo-icon">M</div>
-    <div class="logo-name">MyBank</div>
+    <div class="logo-icon">A</div>
+    <div class="logo-name">Apex Saving Bank</div>
     <div class="logo-sub">Digital Banking Portal</div>
   </div>
 
   <div class="card">
 
-    <!-- ══ STEP 1: Username + Password ══ -->
+ 
     <div class="step active" id="step1">
       <h2>Welcome Back 👋</h2>
-      <p>Sign in to your MyBank account</p>
+      <p>Sign in to your Apex Saving Bank account</p>
 
       <%
         String error = request.getParameter("error");
@@ -140,10 +140,10 @@ body::before{content:"";position:fixed;inset:0;background:rgba(10,15,40,0.78);z-
       <div class="forgot" onclick="document.getElementById('forgotModal').classList.add('show')">
         <i class="fas fa-key"></i> Forgot Password?
       </div>
-      <a href="register.jsp" class="register-link">New to MyBank? <span>Create Account</span></a>
+      <a href="register.jsp" class="register-link">New to Apex Saving Bank ? <span>Create Account</span></a>
     </div>
 
-    <!-- ══ STEP 2: OTP Entry ══ -->
+    
     <div class="step" id="step2">
       <button class="step-back-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i> Back</button>
       <h2>OTP Verification 🔐</h2>
@@ -179,10 +179,10 @@ body::before{content:"";position:fixed;inset:0;background:rgba(10,15,40,0.78);z-
     </div>
 
   </div>
-  <div class="footer-txt">🔒 256-bit SSL Encrypted | MyBank © 2026</div>
+  <div class="footer-txt">🔒 256-bit SSL Encrypted | Apex Saving Bank © 2026</div>
 </div>
 
-<!-- FORGOT MODAL -->
+
 <div class="modal" id="forgotModal">
   <div class="modal-box">
     <h3>🔑 Reset Password</h3>
