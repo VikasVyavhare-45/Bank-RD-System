@@ -41,6 +41,8 @@ input[type="number"]:focus{outline:none;border-color:#F07600;box-shadow:0 0 0 3p
 .btn{width:100%;margin-top:20px;padding:13px;border:none;border-radius:10px;background:linear-gradient(135deg,#F07600,#ff9a3c);color:#fff;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;}
 .back-link{display:block;text-align:center;margin-top:14px;font-size:13px;color:#6B7280;text-decoration:none;}
 .back-link:hover{color:#F07600;}
+@media(max-width:768px){.content{padding:0 12px;margin:20px auto;}.page-title{font-size:18px;}.card-body{padding:20px;}}
+@media(max-width:480px){.content{padding:0 8px;}.page-title{font-size:16px;}.card-body{padding:16px;}.card-header{padding:16px 18px;}.card-header h3{font-size:14px;}.btn{font-size:14px;padding:12px;}}
 </style>
 </head>
 <body>

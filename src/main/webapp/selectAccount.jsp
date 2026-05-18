@@ -33,6 +33,8 @@ select:focus{outline:none;border-color:#F07600;}
 .no-acc{text-align:center;color:#9CA3AF;padding:20px;font-size:14px;}
 .back-link{display:block;text-align:center;margin-top:14px;font-size:13px;color:#6B7280;text-decoration:none;}
 .back-link:hover{color:#F07600;}
+@media(max-width:768px){.content{padding:0 12px;margin:20px auto;}.page-title{font-size:18px;}.card{padding:20px;}}
+@media(max-width:480px){.content{padding:0 8px;}.page-title{font-size:16px;}.card{padding:14px;}.btn{font-size:14px;padding:11px;}}
 </style>
 </head>
 <body>

@@ -74,6 +74,8 @@ body::before{content:"";position:fixed;inset:0;background:rgba(10,15,40,0.75);z-
 .login-link{display:block;text-align:center;margin-top:16px;font-size:13px;color:#888;text-decoration:none;}
 .login-link span{color:#F07600;font-weight:600;}
 .footer-txt{text-align:center;margin-top:20px;font-size:11px;color:#444;padding-bottom:10px;}
+@media(max-width:768px){.wrap{padding:16px;}.card{padding:28px 20px;}.grid-2{grid-template-columns:1fr;gap:10px;}.grid-3{grid-template-columns:1fr;gap:10px;}.card-title{font-size:16px;}.rules-box{max-height:150px;}}
+@media(max-width:480px){.wrap{padding:8px;}.card{padding:20px 14px;}.card-title{font-size:15px;}.section-label{font-size:10px;}.btn-register{font-size:14px;padding:12px;}.check-row{padding:10px 12px;}.check-row label{font-size:12px;}}
 </style>
 </head>
 <body>

@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>MyBank – Login</title>
+<title>Apex Saving Bank – Login</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 <style>
@@ -13,13 +13,12 @@ body::before{content:"";position:fixed;inset:0;background:rgba(10,15,40,0.78);z-
 
 .wrap{position:relative;z-index:1;width:100%;max-width:420px;padding:20px;}
 
- 
 .back-home{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,0.6);font-size:13px;text-decoration:none;margin-bottom:20px;transition:color 0.2s;}
 .back-home:hover{color:#F07600;}
 
 .logo-box{text-align:center;margin-bottom:28px;}
 .logo-icon{width:58px;height:58px;background:linear-gradient(135deg,#F07600,#ff9a3c);border-radius:16px;display:inline-flex;align-items:center;justify-content:center;font-size:26px;font-weight:800;color:white;margin-bottom:10px;box-shadow:0 8px 24px rgba(240,118,0,0.4);}
-.logo-name{font-size:26px;font-weight:700;color:#fff;letter-spacing:1px;}
+.logo-name{font-size:24px;font-weight:700;color:#fff;letter-spacing:0.5px;}
 .logo-sub{font-size:12px;color:#aaa;letter-spacing:3px;text-transform:uppercase;}
 
 .card{background:rgba(255,255,255,0.06);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:36px 32px;box-shadow:0 20px 60px rgba(0,0,0,0.5);}
@@ -50,7 +49,8 @@ body::before{content:"";position:fixed;inset:0;background:rgba(10,15,40,0.78);z-
 .register-link span{color:#F07600;font-weight:600;}
 .register-link:hover span{text-decoration:underline;}
 .footer-txt{text-align:center;margin-top:20px;font-size:11px;color:#555;}
- 
+
+/* OTP STEP */
 .step{display:none;}
 .step.active{display:block;}
 
@@ -58,7 +58,7 @@ body::before{content:"";position:fixed;inset:0;background:rgba(10,15,40,0.78);z-
 .otp-box{width:48px;height:56px;background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.15);border-radius:10px;color:#fff;font-size:22px;font-weight:700;text-align:center;font-family:'Inter',sans-serif;transition:border-color 0.2s;}
 .otp-box:focus{outline:none;border-color:#F07600;box-shadow:0 0 0 3px rgba(240,118,0,0.2);}
 
-.otp-info{background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.25);border-radius:10px;padding:12px 14px;font-size:13px;color:#93c5fd;margin-bottom:20px;text-align:center;line-height:1.6;}
+.otp-info{background:rgba(240,118,0,0.1);border:1px solid rgba(240,118,0,0.25);border-radius:10px;padding:12px 14px;font-size:13px;color:#fdba74;margin-bottom:20px;text-align:center;line-height:1.6;}
 .otp-info strong{color:#fff;}
 #timerDisplay{font-weight:700;color:#F07600;}
 
@@ -70,7 +70,7 @@ body::before{content:"";position:fixed;inset:0;background:rgba(10,15,40,0.78);z-
 .step-back-btn{display:flex;align-items:center;gap:6px;color:#aaa;font-size:13px;cursor:pointer;margin-bottom:20px;background:none;border:none;font-family:inherit;padding:0;}
 .step-back-btn:hover{color:#F07600;}
 
- 
+/* Modal */
 .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:100;justify-content:center;align-items:center;}
 .modal.show{display:flex;}
 .modal-box{background:#1a1d2e;border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:32px;width:320px;text-align:center;}
@@ -79,13 +79,14 @@ body::before{content:"";position:fixed;inset:0;background:rgba(10,15,40,0.78);z-
 .modal-box input:focus{outline:none;border-color:#F07600;}
 .modal-box button{width:100%;padding:11px;border:none;border-radius:8px;background:linear-gradient(135deg,#F07600,#ff9a3c);color:white;font-weight:600;cursor:pointer;font-family:inherit;font-size:14px;}
 .modal-close{color:#F07600;font-size:13px;cursor:pointer;margin-top:12px;display:block;}
+@media(max-width:768px){.wrap{padding:16px;}.card{padding:28px 20px;}.logo-name{font-size:20px;}}
+@media(max-width:480px){.wrap{padding:10px;}.logo-icon{width:46px;height:46px;font-size:20px;}.logo-name{font-size:18px;}.card{padding:20px 14px;}.card h2{font-size:16px;}.otp-box{width:38px;height:46px;font-size:18px;}.otp-boxes{gap:5px;}}
 </style>
 </head>
 <body>
 
 <div class="wrap">
 
- 
   <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
 
   <div class="logo-box">
@@ -96,9 +97,9 @@ body::before{content:"";position:fixed;inset:0;background:rgba(10,15,40,0.78);z-
 
   <div class="card">
 
- 
+    <!-- STEP 1: Username + Password -->
     <div class="step active" id="step1">
-      <h2>Welcome Back 👋</h2>
+      <h2>Welcome Back &#128075;</h2>
       <p>Sign in to your Apex Saving Bank account</p>
 
       <%
@@ -140,17 +141,17 @@ body::before{content:"";position:fixed;inset:0;background:rgba(10,15,40,0.78);z-
       <div class="forgot" onclick="document.getElementById('forgotModal').classList.add('show')">
         <i class="fas fa-key"></i> Forgot Password?
       </div>
-      <a href="register.jsp" class="register-link">New to Apex Saving Bank ? <span>Create Account</span></a>
+      <a href="register.jsp" class="register-link">New to Apex Saving Bank? <span>Create Account</span></a>
     </div>
 
-    
+    <!-- STEP 2: OTP Entry -->
     <div class="step" id="step2">
       <button class="step-back-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i> Back</button>
-      <h2>OTP Verification 🔐</h2>
+      <h2>OTP Verification &#128272;</h2>
       <p style="margin-bottom:16px;">Enter the 6-digit OTP sent to your email</p>
 
       <div class="otp-info">
-        📧 OTP sent to <strong id="maskedEmail">—</strong><br/>
+        &#128231; OTP sent to <strong id="maskedEmail">&#8212;</strong><br/>
         <span style="font-size:12px;color:rgba(255,255,255,0.5);">Valid for <span id="timerDisplay">5:00</span></span>
       </div>
 
@@ -166,7 +167,7 @@ body::before{content:"";position:fixed;inset:0;background:rgba(10,15,40,0.78);z-
         </div>
         <input type="hidden" name="otp" id="otpHidden"/>
         <button type="submit" class="btn-login" onclick="collectOTP()">
-          <i class="fas fa-check-circle"></i> &nbsp;Verify & Login
+          <i class="fas fa-check-circle"></i> &nbsp;Verify &amp; Login
         </button>
       </form>
 
@@ -179,17 +180,17 @@ body::before{content:"";position:fixed;inset:0;background:rgba(10,15,40,0.78);z-
     </div>
 
   </div>
-  <div class="footer-txt">🔒 256-bit SSL Encrypted | Apex Saving Bank © 2026</div>
+  <div class="footer-txt">&#128274; 256-bit SSL Encrypted | Apex Saving Bank &copy; 2026</div>
 </div>
 
-
+<!-- FORGOT MODAL -->
 <div class="modal" id="forgotModal">
   <div class="modal-box">
-    <h3>🔑 Reset Password</h3>
+    <h3>&#128273; Reset Password</h3>
     <input type="text" placeholder="Username" id="fpUser"/>
     <input type="password" placeholder="New Password" id="fpPass"/>
     <button onclick="resetPass()">Reset Password</button>
-    <span class="modal-close" onclick="document.getElementById('forgotModal').classList.remove('show')">✕ Close</span>
+    <span class="modal-close" onclick="document.getElementById('forgotModal').classList.remove('show')">&#10005; Close</span>
   </div>
 </div>
 
@@ -215,11 +216,7 @@ function handleLogin(e) {
     btn.disabled = false;
     btn.innerHTML = '<i class="fas fa-paper-plane"></i> &nbsp;Send OTP';
     if(data.success) {
-      // ✅ Admin — OTP bypass, direct redirect
-      if(data.isAdmin) {
-        window.location.href = 'adminDashboard.jsp';
-        return;
-      }
+      if(data.isAdmin) { window.location.href = 'adminDashboard.jsp'; return; }
       document.getElementById('maskedEmail').textContent = data.maskedEmail;
       document.getElementById('hiddenUsername').value = username;
       document.getElementById('step1').classList.remove('active');

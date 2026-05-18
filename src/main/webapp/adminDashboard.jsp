@@ -16,7 +16,6 @@
                 p1.setInt(1, uid); p1.executeUpdate();
                 PreparedStatement p2 = ac.prepareStatement("DELETE FROM users WHERE id=?");
                 p2.setInt(1, uid); p2.executeUpdate();
-
             } else if ("updateUser".equals(action)) {
                 PreparedStatement ps = ac.prepareStatement(
                     "UPDATE users SET full_name=?,mobile=?,email=?,account_no=?,ifsc=?,bank_name=? WHERE id=?");
@@ -28,14 +27,12 @@
                 ps.setString(6, request.getParameter("bank_name"));
                 ps.setInt(7, Integer.parseInt(request.getParameter("uid")));
                 ps.executeUpdate();
-
             } else if ("deleteRD".equals(action)) {
                 int aid = Integer.parseInt(request.getParameter("aid"));
                 PreparedStatement p1 = ac.prepareStatement("DELETE FROM transactions WHERE account_id=?");
                 p1.setInt(1, aid); p1.executeUpdate();
                 PreparedStatement p2 = ac.prepareStatement("DELETE FROM rd_account WHERE account_id=?");
                 p2.setInt(1, aid); p2.executeUpdate();
-
             } else if ("updateRD".equals(action)) {
                 int aid = Integer.parseInt(request.getParameter("aid"));
                 PreparedStatement ps = ac.prepareStatement(
@@ -70,23 +67,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Apex Saving Bank - Admin Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Apex Saving Bank - Admin Dashboard</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
 body{background:#F0F2F5;min-height:100vh;}
-.navbar{background:#0F172A;padding:0 28px;height:60px;display:flex;align-items:center;justify-content:space-between;}
-.nav-logo{font-size:16px;font-weight:700;color:#fff;display:flex;align-items:center;gap:10px;}
-.nav-logo-icon{background:linear-gradient(135deg,#1E40AF,#3B82F6);color:#fff;border-radius:8px;width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;font-size:16px;}
-.nav-logo-text{color:#fff;font-size:16px;font-weight:700;}
-.nav-logo-text span{color:#3B82F6;}
-.admin-badge{background:rgba(59,130,246,0.15);color:#3B82F6;border:1px solid rgba(59,130,246,0.3);padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;}
+.navbar{background:#1a1a2e;padding:0 28px;height:60px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-size:18px;font-weight:700;color:#F07600;display:flex;align-items:center;gap:8px;}
+.nav-logo span{background:#F07600;color:#fff;border-radius:8px;width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center;font-size:14px;}
+.admin-badge{background:rgba(240,118,0,0.2);color:#F07600;border:1px solid rgba(240,118,0,0.3);padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;}
 .logout-btn{background:rgba(239,68,68,0.15);color:#EF4444;border:1px solid rgba(239,68,68,0.3);padding:6px 14px;border-radius:8px;font-size:13px;text-decoration:none;font-weight:600;}
 .content{max-width:1200px;margin:28px auto;padding:0 20px;}
 .page-title{font-size:21px;font-weight:700;color:#1a1a2e;margin-bottom:20px;}
-.page-title em{color:#3B82F6;font-style:normal;}
+.page-title em{color:#F07600;font-style:normal;}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px;}
 .stat-card{background:#fff;border-radius:14px;padding:20px;border:1px solid #E5E7EB;position:relative;overflow:hidden;transition:all 0.2s;}
 .stat-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.08);}
@@ -101,15 +96,15 @@ body{background:#F0F2F5;min-height:100vh;}
 .table-card{background:#fff;border-radius:14px;border:1px solid #E5E7EB;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.04);margin-bottom:24px;}
 .table-header{padding:18px 22px;border-bottom:1px solid #E5E7EB;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
 .table-title{font-size:15px;font-weight:700;color:#1a1a2e;display:flex;align-items:center;gap:8px;}
-.table-title i{color:#3B82F6;}
+.table-title i{color:#F07600;}
 .search-input{padding:8px 14px;border:1.5px solid #E5E7EB;border-radius:8px;font-size:13px;width:220px;}
-.search-input:focus{outline:none;border-color:#3B82F6;}
+.search-input:focus{outline:none;border-color:#F07600;}
 table{width:100%;border-collapse:collapse;}
 th{padding:10px 16px;font-size:11px;font-weight:600;color:#9CA3AF;text-transform:uppercase;background:#F9FAFB;text-align:left;border-bottom:1px solid #E5E7EB;}
 td{padding:11px 16px;font-size:13px;color:#374151;border-bottom:1px solid #F3F4F6;vertical-align:middle;}
 tr:last-child td{border-bottom:none;}
-.user-row:hover td{background:#EFF6FF;cursor:pointer;}
-.role-badge{padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;background:#EFF6FF;color:#3B82F6;}
+.user-row:hover td{background:#FFFAF5;cursor:pointer;}
+.role-badge{padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600;background:#FFF3E6;color:#F07600;}
 .btn-edit{background:#EFF6FF;color:#2563EB;border:none;padding:5px 11px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.2s;}
 .btn-edit:hover{background:#2563EB;color:white;}
 .btn-del{background:#FEF2F2;color:#DC2626;border:none;padding:5px 11px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.2s;}
@@ -119,9 +114,9 @@ tr:last-child td{border-bottom:none;}
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:200;justify-content:center;align-items:flex-start;padding:30px 20px;overflow-y:auto;}
 .modal-overlay.show{display:flex;}
 .modal-box{background:#fff;border-radius:18px;width:100%;max-width:780px;margin:auto;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.3);}
-.modal-head{background:linear-gradient(135deg,#0F172A,#1E40AF);padding:20px 24px;display:flex;justify-content:space-between;align-items:center;}
+.modal-head{background:linear-gradient(135deg,#1a1a2e,#2d3561);padding:20px 24px;display:flex;justify-content:space-between;align-items:center;}
 .modal-head h3{font-size:16px;font-weight:700;color:#fff;display:flex;align-items:center;gap:8px;}
-.modal-head h3 i{color:#3B82F6;}
+.modal-head h3 i{color:#F07600;}
 .modal-close{background:rgba(255,255,255,0.1);border:none;color:white;width:32px;height:32px;border-radius:8px;cursor:pointer;font-size:16px;}
 .modal-close:hover{background:rgba(255,255,255,0.2);}
 .modal-body{padding:24px;}
@@ -129,27 +124,26 @@ tr:last-child td{border-bottom:none;}
 .info-item label{display:block;font-size:11px;font-weight:600;color:#9CA3AF;text-transform:uppercase;margin-bottom:4px;}
 .info-item span{font-size:14px;font-weight:600;color:#1a1a2e;}
 .edit-input{width:100%;padding:8px 12px;border:1.5px solid #E5E7EB;border-radius:8px;font-size:13px;color:#1a1a2e;}
-.edit-input:focus{outline:none;border-color:#3B82F6;}
-.modal-section{font-size:12px;font-weight:700;color:#3B82F6;text-transform:uppercase;letter-spacing:1px;padding:12px 0 8px;border-bottom:1px solid #F3F4F6;margin-bottom:14px;}
+.edit-input:focus{outline:none;border-color:#F07600;}
+.modal-section{font-size:12px;font-weight:700;color:#F07600;text-transform:uppercase;letter-spacing:1px;padding:12px 0 8px;border-bottom:1px solid #F3F4F6;margin-bottom:14px;}
 .rd-mini-table{width:100%;border-collapse:collapse;font-size:13px;}
 .rd-mini-table th{padding:8px 12px;font-size:11px;font-weight:600;color:#9CA3AF;text-transform:uppercase;background:#F9FAFB;text-align:left;}
 .rd-mini-table td{padding:10px 12px;border-bottom:1px solid #F3F4F6;vertical-align:middle;}
 .rd-mini-table tr:last-child td{border-bottom:none;}
 .modal-footer{padding:16px 24px;border-top:1px solid #E5E7EB;display:flex;justify-content:flex-end;gap:10px;background:#FAFAFA;}
-.btn-save{background:linear-gradient(135deg,#1E40AF,#3B82F6);color:white;border:none;padding:9px 22px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;}
-.btn-save:hover{opacity:0.9;}
+.btn-save{background:#F07600;color:white;border:none;padding:9px 22px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;}
+.btn-save:hover{background:#D96A00;}
 .btn-cancel{background:#E5E7EB;color:#374151;border:none;padding:9px 18px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;}
 .no-rd{text-align:center;padding:28px;color:#9CA3AF;}
 .no-rd i{font-size:28px;display:block;margin-bottom:8px;}
+@media(max-width:768px){.content{padding:0 12px;margin:20px auto;}.stats{grid-template-columns:1fr 1fr;gap:10px;}.navbar{padding:0 14px;}.page-title{font-size:18px;}table{display:block;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;font-size:12px;}.modal-box{max-width:95%;}.info-grid{grid-template-columns:1fr;}}
+@media(max-width:480px){.stats{grid-template-columns:1fr;}.stat-value{font-size:22px;}.page-title{font-size:16px;}.table-header{flex-direction:column;gap:8px;}.search-input{width:100%;}.admin-badge{display:none;}.modal-box{max-width:100%;border-radius:10px;}}
 </style>
 </head>
 <body>
 
 <nav class="navbar">
-  <div class="nav-logo">
-    <div class="nav-logo-icon"><i class="fas fa-university"></i></div>
-    <div class="nav-logo-text">Apex <span>Saving</span> Bank</div>
-  </div>
+  <div class="nav-logo"><span>A</span> Apex Saving Bank Admin</div>
   <div style="display:flex;align-items:center;gap:12px;">
     <span class="admin-badge"><i class="fas fa-shield-alt"></i> Admin Panel</span>
     <a href="LogoutServlet" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
@@ -168,7 +162,7 @@ tr:last-child td{border-bottom:none;}
   <div class="table-card">
     <div class="table-header">
       <div class="table-title"><i class="fas fa-users"></i> All Customers
-        <span style="background:#EFF6FF;color:#3B82F6;padding:2px 10px;border-radius:12px;font-size:12px;margin-left:8px;"><%= totalUsers %></span>
+        <span style="background:#FFF3E6;color:#F07600;padding:2px 10px;border-radius:12px;font-size:12px;margin-left:8px;"><%= totalUsers %></span>
       </div>
       <input type="text" class="search-input" placeholder="Search users..." oninput="searchTable(this.value)"/>
     </div>
@@ -199,8 +193,8 @@ tr:last-child td{border-bottom:none;}
 %>
       <tr class="user-row" onclick="openUserModal(<%= uid %>,'<%= unameJ %>','<%= fnameJ %>','<%= mobJ %>','<%= emlJ %>','<%= acnoJ %>','<%= ifscJ %>','<%= bnmJ %>')">
         <td style="color:#9CA3AF;"><%= sno++ %></td>
-        <td><strong><i class="fas fa-user-circle" style="color:#3B82F6;margin-right:6px;"></i><%= fname.isEmpty() ? uname : fname %></strong></td>
-        <td style="color:#3B82F6;font-weight:600;">@<%= uname %></td>
+        <td><strong><i class="fas fa-user-circle" style="color:#F07600;margin-right:6px;"></i><%= fname.isEmpty() ? uname : fname %></strong></td>
+        <td style="color:#F07600;font-weight:600;">@<%= uname %></td>
         <td><%= mob.isEmpty() ? "&#8212;" : mob %></td>
         <td><%= eml.isEmpty() ? "&#8212;" : eml %></td>
         <td style="font-family:monospace;font-size:12px;"><%= acno.isEmpty() ? "&#8212;" : acno %></td>
@@ -230,7 +224,7 @@ tr:last-child td{border-bottom:none;}
       <div class="modal-section"><i class="fas fa-id-card"></i> &nbsp;Personal Information</div>
       <div class="info-grid">
         <div class="info-item"><label>Full Name</label><span id="mu_name"></span></div>
-        <div class="info-item"><label>Username</label><span id="mu_uname" style="color:#3B82F6;"></span></div>
+        <div class="info-item"><label>Username</label><span id="mu_uname" style="color:#F07600;"></span></div>
         <div class="info-item"><label>Mobile</label><span id="mu_mobile"></span></div>
         <div class="info-item"><label>Email</label><span id="mu_email"></span></div>
         <div class="info-item"><label>Account No</label><span id="mu_accno"></span></div>
@@ -304,7 +298,6 @@ tr:last-child td{border-bottom:none;}
   </div>
 </div>
 
-<!-- HIDDEN DELETE FORMS -->
 <form id="deleteUserForm" method="post" action="adminDashboard.jsp" style="display:none">
   <input type="hidden" name="action" value="deleteUser"/>
   <input type="hidden" name="uid" id="du_uid"/>
@@ -324,7 +317,7 @@ ResultSet rrs2 = rc2.prepareStatement(
 while(rrs2.next()) {
   int    rdUid = rrs2.getInt("user_id");
   int    aid2  = rrs2.getInt("account_id");
-  String acNo2 = rrs2.getString("account_no")     != null ? rrs2.getString("account_no").replace("\\","\\\\").replace("'","\\'") : "MYRD-"+aid2;
+  String acNo2 = rrs2.getString("account_no") != null ? rrs2.getString("account_no").replace("\\","\\\\").replace("'","\\'") : "MYRD-"+aid2;
   double amt2  = rrs2.getDouble("amount");
   int    mon2  = rrs2.getInt("months");
   double rate2 = rrs2.getDouble("interest_rate");
@@ -336,97 +329,67 @@ if(!rdData[<%= rdUid %>]) rdData[<%= rdUid %>] = [];
 rdData[<%= rdUid %>].push({aid:<%= aid2 %>,accNo:'<%= acNo2 %>',amount:<%= amt2 %>,months:<%= mon2 %>,rate:<%= rate2 %>,matAmt:<%= mat2 %>,totDep:<%= dep2 %>,status:'<%= stat2 %>'});
 <% } rc2.close(); %>
 
-function openUserModal(uid, uname, fname, mobile, email, accno, ifsc, bname) {
-  document.getElementById('modalUserTitle').textContent = fname || uname;
-  document.getElementById('mu_name').textContent   = fname  || '\u2014';
-  document.getElementById('mu_uname').textContent  = '@' + uname;
-  document.getElementById('mu_mobile').textContent = mobile || '\u2014';
-  document.getElementById('mu_email').textContent  = email  || '\u2014';
-  document.getElementById('mu_accno').textContent  = accno  || '\u2014';
-  document.getElementById('mu_ifsc').textContent   = ifsc   || '\u2014';
-  document.getElementById('mu_bank').textContent   = bname  || '\u2014';
-
-  var rdArea   = document.getElementById('rdAccountsArea');
-  var accounts = rdData[uid] || [];
-
-  if(accounts.length === 0) {
-    rdArea.innerHTML = '<div class="no-rd"><i class="fas fa-inbox"></i>No RD accounts found</div>';
-  } else {
-    var html = '<table class="rd-mini-table"><thead><tr><th>Account No</th><th>Monthly</th><th>Months</th><th>Rate</th><th>Deposited</th><th>Maturity</th><th>Status</th><th>Actions</th></tr></thead><tbody>';
-    for(var i = 0; i < accounts.length; i++) {
-      var rd = accounts[i];
-      var sc = (rd.status||'').toLowerCase();
-      var scColor = sc==='active'?'#16A34A':sc==='matured'?'#1D4ED8':'#DC2626';
-      var scBg    = sc==='active'?'#DCFCE7':sc==='matured'?'#DBEAFE':'#FEE2E2';
-      html += '<tr>';
-      html += '<td style="font-weight:600;font-size:12px;">'+(rd.accNo||'&mdash;')+'</td>';
-      html += '<td>&#8377;'+Number(rd.amount).toLocaleString('en-IN')+'</td>';
-      html += '<td>'+rd.months+'</td>';
-      html += '<td style="color:#3B82F6;font-weight:700;">'+rd.rate+'%</td>';
-      html += '<td>&#8377;'+Number(rd.totDep).toLocaleString('en-IN')+'</td>';
-      html += '<td style="color:#16A34A;font-weight:700;">&#8377;'+Number(rd.matAmt).toLocaleString('en-IN')+'</td>';
-      html += '<td><span style="background:'+scBg+';color:'+scColor+';padding:3px 8px;border-radius:12px;font-size:11px;font-weight:600;">'+rd.status+'</span></td>';
-      html += '<td><div style="display:flex;gap:5px;">';
-      html += '<button class="btn-edit" onclick="openEditRD('+rd.aid+','+rd.amount+','+rd.months+','+rd.rate+','+rd.totDep+',\''+rd.status+'\')"><i class="fas fa-edit"></i> Edit</button>';
-      html += '<button class="btn-del" onclick="confirmDeleteRD('+rd.aid+',\''+(rd.accNo||'')+'\')"><i class="fas fa-trash"></i></button>';
-      html += '</div></td></tr>';
+function openUserModal(uid,uname,fname,mobile,email,accno,ifsc,bname){
+  document.getElementById('modalUserTitle').textContent=fname||uname;
+  document.getElementById('mu_name').textContent=fname||'\u2014';
+  document.getElementById('mu_uname').textContent='@'+uname;
+  document.getElementById('mu_mobile').textContent=mobile||'\u2014';
+  document.getElementById('mu_email').textContent=email||'\u2014';
+  document.getElementById('mu_accno').textContent=accno||'\u2014';
+  document.getElementById('mu_ifsc').textContent=ifsc||'\u2014';
+  document.getElementById('mu_bank').textContent=bname||'\u2014';
+  var rdArea=document.getElementById('rdAccountsArea');
+  var accounts=rdData[uid]||[];
+  if(accounts.length===0){rdArea.innerHTML='<div class="no-rd"><i class="fas fa-inbox"></i>No RD accounts found</div>';}
+  else{
+    var html='<table class="rd-mini-table"><thead><tr><th>Account No</th><th>Monthly</th><th>Months</th><th>Rate</th><th>Deposited</th><th>Maturity</th><th>Status</th><th>Actions</th></tr></thead><tbody>';
+    for(var i=0;i<accounts.length;i++){
+      var rd=accounts[i];var sc=(rd.status||'').toLowerCase();
+      var scColor=sc==='active'?'#16A34A':sc==='matured'?'#1D4ED8':'#DC2626';
+      var scBg=sc==='active'?'#DCFCE7':sc==='matured'?'#DBEAFE':'#FEE2E2';
+      html+='<tr><td style="font-weight:600;font-size:12px;">'+(rd.accNo||'&mdash;')+'</td>';
+      html+='<td>&#8377;'+Number(rd.amount).toLocaleString('en-IN')+'</td>';
+      html+='<td>'+rd.months+'</td><td style="color:#F07600;font-weight:700;">'+rd.rate+'%</td>';
+      html+='<td>&#8377;'+Number(rd.totDep).toLocaleString('en-IN')+'</td>';
+      html+='<td style="color:#16A34A;font-weight:700;">&#8377;'+Number(rd.matAmt).toLocaleString('en-IN')+'</td>';
+      html+='<td><span style="background:'+scBg+';color:'+scColor+';padding:3px 8px;border-radius:12px;font-size:11px;font-weight:600;">'+rd.status+'</span></td>';
+      html+='<td><div style="display:flex;gap:5px;"><button class="btn-edit" onclick="openEditRD('+rd.aid+','+rd.amount+','+rd.months+','+rd.rate+','+rd.totDep+',\''+rd.status+'\')"><i class="fas fa-edit"></i> Edit</button>';
+      html+='<button class="btn-del" onclick="confirmDeleteRD('+rd.aid+',\''+(rd.accNo||'')+'\')"><i class="fas fa-trash"></i></button></div></td></tr>';
     }
-    html += '</tbody></table>';
-    rdArea.innerHTML = html;
+    html+='</tbody></table>';rdArea.innerHTML=html;
   }
   document.getElementById('userModal').classList.add('show');
 }
-
-function openEditUser(uid, fname, mobile, email, accno, ifsc, bname) {
-  document.getElementById('eu_uid').value    = uid;
-  document.getElementById('eu_name').value   = fname;
-  document.getElementById('eu_mobile').value = mobile;
-  document.getElementById('eu_email').value  = email;
-  document.getElementById('eu_accno').value  = accno;
-  document.getElementById('eu_ifsc').value   = ifsc;
-  document.getElementById('eu_bank').value   = bname;
-  closeModal('userModal');
-  document.getElementById('editUserModal').classList.add('show');
+function openEditUser(uid,fname,mobile,email,accno,ifsc,bname){
+  document.getElementById('eu_uid').value=uid;document.getElementById('eu_name').value=fname;
+  document.getElementById('eu_mobile').value=mobile;document.getElementById('eu_email').value=email;
+  document.getElementById('eu_accno').value=accno;document.getElementById('eu_ifsc').value=ifsc;
+  document.getElementById('eu_bank').value=bname;
+  closeModal('userModal');document.getElementById('editUserModal').classList.add('show');
 }
-
-function openEditRD(aid, amount, months, rate, totDep, status) {
-  document.getElementById('er_aid').value    = aid;
-  document.getElementById('er_amount').value = amount;
-  document.getElementById('er_months').value = months;
-  document.getElementById('er_rate').value   = rate;
-  document.getElementById('er_dep').value    = totDep;
-  document.getElementById('er_status').value = status;
-  closeModal('userModal');
-  document.getElementById('editRDModal').classList.add('show');
+function openEditRD(aid,amount,months,rate,totDep,status){
+  document.getElementById('er_aid').value=aid;document.getElementById('er_amount').value=amount;
+  document.getElementById('er_months').value=months;document.getElementById('er_rate').value=rate;
+  document.getElementById('er_dep').value=totDep;document.getElementById('er_status').value=status;
+  closeModal('userModal');document.getElementById('editRDModal').classList.add('show');
 }
-
-function confirmDeleteUser(uid, uname, fname) {
-  if(confirm('Delete user "'+fname+'" (@'+uname+')?\n\nAll RD accounts and transactions will also be deleted.\nThis cannot be undone!')) {
-    document.getElementById('du_uid').value = uid;
-    document.getElementById('deleteUserForm').submit();
+function confirmDeleteUser(uid,uname,fname){
+  if(confirm('Delete user "'+fname+'" (@'+uname+')?\n\nAll RD accounts and transactions will also be deleted.\nThis cannot be undone!')){
+    document.getElementById('du_uid').value=uid;document.getElementById('deleteUserForm').submit();
   }
 }
-
-function confirmDeleteRD(aid, accNo) {
-  if(confirm('Delete RD Account "'+accNo+'"?\n\nAll transactions will also be deleted.\nThis cannot be undone!')) {
-    document.getElementById('dr_aid').value = aid;
-    document.getElementById('deleteRDForm').submit();
+function confirmDeleteRD(aid,accNo){
+  if(confirm('Delete RD Account "'+accNo+'"?\n\nAll transactions will also be deleted.\nThis cannot be undone!')){
+    document.getElementById('dr_aid').value=aid;document.getElementById('deleteRDForm').submit();
   }
 }
-
-function closeModal(id) {
-  document.getElementById(id).classList.remove('show');
-}
-
-document.querySelectorAll('.modal-overlay').forEach(function(m) {
-  m.addEventListener('click', function(e) {
-    if(e.target === this) this.classList.remove('show');
-  });
+function closeModal(id){document.getElementById(id).classList.remove('show');}
+document.querySelectorAll('.modal-overlay').forEach(function(m){
+  m.addEventListener('click',function(e){if(e.target===this)this.classList.remove('show');});
 });
-
-function searchTable(val) {
-  document.querySelectorAll('#userTable tbody tr').forEach(function(r) {
-    r.style.display = r.textContent.toLowerCase().includes(val.toLowerCase()) ? '' : 'none';
+function searchTable(val){
+  document.querySelectorAll('#userTable tbody tr').forEach(function(r){
+    r.style.display=r.textContent.toLowerCase().includes(val.toLowerCase())?'':'none';
   });
 }
 </script>

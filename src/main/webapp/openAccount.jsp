@@ -52,6 +52,8 @@ body{background:#F0F2F5;min-height:100vh;}
 .btn-submit:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(240,118,0,0.4);}
 .back-link{display:block;text-align:center;margin-top:14px;font-size:13px;color:#6B7280;text-decoration:none;}
 .back-link:hover{color:#F07600;}
+@media(max-width:768px){.content{padding:0 12px;margin:20px auto;}.page-title{font-size:18px;}.grid-2{grid-template-columns:1fr;gap:10px;}.card-body{padding:20px;}.calc-result{grid-template-columns:1fr;gap:8px;}.navbar{padding:0 14px;}.nav-links a{margin-left:10px;font-size:12px;}}
+@media(max-width:480px){.content{padding:0 8px;}.page-title{font-size:16px;}.card-header{padding:16px 18px;}.card-header h3{font-size:15px;}.btn-submit{font-size:14px;padding:12px;}.nav-links{display:none;}}
 </style>
 </head>
 <body>

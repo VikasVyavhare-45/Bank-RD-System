@@ -97,7 +97,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Apex Saving Bank &ndash; Dashboard</title>
@@ -245,7 +244,114 @@ body{font-family:'Source Sans 3',sans-serif;background:#F0F2F5;color:var(--dark)
 .save-btn:hover{background:var(--orange-dark);}
 .success-msg{background:#DCFCE7;color:#16A34A;border:1px solid #BBF7D0;border-radius:8px;padding:10px 14px;font-size:13px;font-weight:600;margin-bottom:16px;display:none;}
 .error-msg{background:#FEE2E2;color:#DC2626;border:1px solid #FECACA;border-radius:8px;padding:10px 14px;font-size:13px;font-weight:600;margin-bottom:16px;display:none;}
-@media(max-width:768px){.summary-cards,.nav-info-grid,.info-grid-3{grid-template-columns:1fr 1fr;}.header-nav{display:none;}}
+
+/* ══════════════════════════════════
+   MOBILE RESPONSIVE — 768px खाली
+══════════════════════════════════ */
+@media(max-width:768px){
+
+  /* Top bar */
+  .top-bar{flex-direction:column;gap:4px;padding:8px 14px;font-size:11px;text-align:center;}
+  .top-bar div{display:flex;gap:10px;justify-content:center;}
+
+  /* Main header */
+  .main-header{padding:0 14px;height:56px;}
+  .logo-text{font-size:15px;}
+  .logo-sub{display:none;}
+  .logo-icon{width:36px;height:36px;font-size:16px;}
+  .header-nav{display:none;}
+  .header-right{gap:8px;}
+  .user-name{display:none;}
+  .logout-btn{padding:6px 10px;font-size:12px;}
+
+  /* Sub nav — horizontal scroll */
+  .sub-nav{overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;padding:0 10px;}
+  .sub-nav a{padding:10px 12px;font-size:12px;}
+  .sub-nav::-webkit-scrollbar{display:none;}
+
+  /* Breadcrumb */
+  .breadcrumb{padding:8px 14px;font-size:11px;}
+
+  /* Main content */
+  .main-content{padding:0 12px;margin:16px auto;}
+
+  /* Page title row */
+  .page-title-row{flex-direction:column;align-items:flex-start;gap:10px;}
+  .page-title{font-size:18px;}
+  .open-rd-btn{width:100%;justify-content:center;padding:10px;}
+
+  /* Summary cards — 2 columns */
+  .summary-cards{grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+  .card-value{font-size:20px;}
+  .card-label{font-size:10px;}
+  .card-icon{width:32px;height:32px;font-size:14px;top:10px;right:10px;}
+  .summary-card{padding:14px;}
+
+  /* RD Table — horizontal scroll */
+  .section-card{border-radius:10px;}
+  .section-header{padding:12px 14px;flex-direction:column;align-items:flex-start;gap:8px;}
+  .section-title{font-size:14px;}
+  .filter-row{flex-wrap:wrap;gap:6px;}
+  .filter-btn{padding:4px 10px;font-size:11px;}
+
+  /* Table scroll */
+  .rd-table{display:block;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;font-size:12px;}
+  .rd-table th{padding:8px 10px;font-size:10px;}
+  .rd-table td{padding:10px 10px;}
+
+  /* Calculator */
+  .calc-body{padding:14px;}
+  .calc-grid{grid-template-columns:1fr;gap:10px;}
+  .calc-result{grid-template-columns:1fr;gap:8px;text-align:left;}
+  .calc-res-value{font-size:16px;}
+  .calc-res-value.highlight{font-size:18px;}
+
+  /* Info grids — 1 column */
+  .nav-info-grid{grid-template-columns:1fr;gap:10px;padding:14px;}
+  .info-grid-3{grid-template-columns:1fr;gap:10px;padding:14px;}
+  .nic{padding:14px;}
+  .icard{padding:16px;}
+
+  /* Footer */
+  .footer{padding:14px;font-size:11px;}
+
+  /* Profile Modal */
+  .modal-box{max-width:100%;border-radius:14px;margin:10px;}
+  .profile-avatar-section{padding:16px 16px 0;}
+  .tab-content{padding:14px 16px;}
+  .profile-tabs{margin:14px 16px 0;}
+}
+
+/* ══════════════════════════════════
+   SMALL MOBILE — 480px खाली
+══════════════════════════════════ */
+@media(max-width:480px){
+
+  /* Summary cards — 1 column */
+  .summary-cards{grid-template-columns:1fr;}
+  .summary-card{padding:14px 16px;}
+  .card-value{font-size:22px;}
+
+  /* Top bar links hide */
+  .top-bar div{display:none;}
+  .top-bar span{font-size:11px;}
+
+  /* Page title */
+  .page-title{font-size:16px;}
+
+  /* Sub nav font */
+  .sub-nav a{font-size:11px;padding:9px 10px;}
+  .sub-nav a span{display:none;}
+
+  /* Section header */
+  .section-header{padding:10px 12px;}
+  .filter-btn{padding:4px 8px;font-size:10px;}
+
+  /* Modal full screen */
+  .modal-overlay{padding:0;}
+  .modal-box{border-radius:0;min-height:100vh;max-width:100%;}
+}
+
 </style>
 </head>
 <body>

@@ -50,6 +50,8 @@ body{background:#F0F2F5;min-height:100vh;}
 .no-txn{text-align:center;padding:24px;color:#9CA3AF;font-size:13px;}
 .back-link{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#6B7280;font-size:13px;margin-bottom:16px;}
 .back-link:hover{color:#F07600;}
+@media(max-width:768px){.content{padding:0 12px;margin:20px auto;}.page-title{font-size:18px;}.navbar{padding:0 14px;}.nav-links a{margin-left:10px;font-size:12px;}.acc-summary{grid-template-columns:1fr 1fr;}.txn-table{display:block;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;font-size:12px;}}
+@media(max-width:480px){.content{padding:0 8px;}.acc-summary{grid-template-columns:1fr;}.sum-item{padding:10px 14px;}.nav-links{display:none;}.page-title{font-size:16px;}}
 </style>
 </head>
 <body>
